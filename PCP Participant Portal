@@ -1,0 +1,23 @@
+import wixLocation from 'wix-location';
+import wixWindow from 'wix-window';
+import {session} from 'wix-storage';
+
+
+
+$w.onReady(function () {
+
+	let thisPage = "pagePassword";
+
+	 wixWindow.openLightbox('Password', {
+    "pageIdentifier": thisPage,
+  }).then((authenticated) => {
+	  console.log("Athentication:", authenticated.authentication)
+        if (authenticated.authentication === "Yes") {
+			$w("#section3").expand();
+            $w("#section4").expand();
+        } else {
+           wixLocation.to('/');
+        }
+    })
+
+});
